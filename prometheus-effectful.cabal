@@ -1,0 +1,68 @@
+cabal-version: 3.8
+name: prometheus-effectful
+version: 0.0.1.0
+synopsis: Prometheus bindings for Effectful
+category: Telemetry
+description: See README
+maintainer: Effectful team
+license: BSD-3-Clause
+license-file: LICENSE
+build-type: Simple
+tested-with:
+  ghc ==9.6.6 || ==9.8.4 || ==9.10.1 || ==9.12.1
+
+extra-source-files:
+  README.md
+
+extra-doc-files:
+  CHANGELOG.md
+
+bug-reports: https://github.com/haskell-effectful/prometheus-effectful/issues
+
+source-repository head
+  type: git
+  location: https://github.com/haskell-effectful/prometheus-effectful
+
+common common-stanza
+  default-language: GHC2021
+  default-extensions:
+    DataKinds
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    GADTs
+    LambdaCase
+    NoFieldSelectors
+    OverloadedLabels
+    OverloadedRecordDot
+    OverloadedStrings
+    RecordWildCards
+    StrictData
+    TypeFamilies
+    UndecidableInstances
+
+  ghc-options:
+    -Wall
+    -Wcompat
+    -Wprepositive-qualified-module
+    -Winvalid-haddock
+    -Wmissing-deriving-strategies
+    -Wpartial-fields
+    -Wno-unticked-promoted-constructors
+    -Woperator-whitespace
+
+  build-depends:
+    base <5
+
+library
+  import: common-stanza
+  hs-source-dirs: src
+  exposed-modules:
+    Effectful.Prometheus
+
+  build-depends:
+    bytestring >=0.11.5 && <0.12,
+    effectful >=2.5.1 && <2.6,
+    mtl >=2.3.1 && <2.4,
+    prometheus-client >=1.1.1 && <1.2,
+    text >=2.0.2 && <2.1,
